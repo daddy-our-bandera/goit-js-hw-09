@@ -29,10 +29,11 @@ const options = {
 
          function dataTimer(){
            let timerId = null;
-             
+           
            timerId = setInterval(() =>{
             let diff = selectedDates[0] - new Date();
             let countTime = convertMs(diff);
+            
 
              if (diff < 1000 ) {
               clearInterval(timerId)
@@ -41,10 +42,13 @@ const options = {
                 refs.dataBtn.disabled = true;
               };
 
-             refs.dataDay.textContent = countTime.days;
-             refs.dataHours.textContent = countTime.hours;
-             refs.dataMinutes.textContent = countTime.minutes;
-             refs.dataSeconds.textContent = countTime.seconds; }, 1000);
+             refs.dataDay.textContent = addLeadingZero(countTime.days);
+             refs.dataHours.textContent = addLeadingZero(countTime.hours);
+             refs.dataMinutes.textContent = addLeadingZero(countTime.minutes);
+             refs.dataSeconds.textContent = addLeadingZero(countTime.seconds); }, 1000);
+            
+          
+          
              
         };
         
@@ -52,6 +56,10 @@ const options = {
     },
   };
 flatpickr(refs.dataInput, options);
+
+function addLeadingZero(value) {
+  return value.toString().padStart(2,[0])
+};
 
 
 function convertMs(ms) {
