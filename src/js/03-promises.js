@@ -40,4 +40,3 @@ function onFormSubmit(evt) {
     
   }
 };
-console.log("fsfdf")
